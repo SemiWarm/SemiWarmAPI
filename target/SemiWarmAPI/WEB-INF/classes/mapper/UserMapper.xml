@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace是指明Mybatis扫描的目录，mapper是我们的Dao层的映射目录 -->
+<mapper namespace="cn.semiwarm.api.mapper.UserMapper">
+
+    <!--增加用户-->
+    <insert id="add" parameterType="cn.semiwarm.api.entity.User">
+        INSERT INTO USER (user_id, user_name, user_phone, password, status, create_time)
+        VALUES (#{userId}, #{userName}, #{userPhone}, password(#{password}), #{status}, #{createTime})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="delete" parameterType="cn.semiwarm.api.entity.User">
+        DELETE FROM USER
+        WHERE user_id = #{userId}
+    </delete>
+
+    <!--更新用户-->
+    <update id="update" parameterType="cn.semiwarm.api.entity.User">
+        UPDATE USER SET
+            user_name = #{userName},
+            user_phone = #{userPhone},
+            password = password(#{password}),
+            status = #{status}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--根据id查找用户-->
+    <select id="findById" parameterType="String" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER WHERE user_id = #{userId}
+    </select>
+
+    <!--查找所有用户-->
+    <select id="findAll" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER
+    </select>
+
+    <!--根据手机号查询用户-->
+    <select id="findUserByPhone" parameterType="String" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER WHERE user_phone = #{userPhone}
+    </select>
+
+    <!--根据用户名称查询用户-->
+    <select id="findUserByName" parameterType="String" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER WHERE user_name = #{userName}
+    </select>
+
+    <!--根据用户名验证-->
+    <select id="verifyUserByName" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER WHERE user_name = #{userName} AND password = password(#{password})
+    </select>
+    <!--根据手机号验证-->
+    <select id="verifyUserByPhone" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
+        SELECT * FROM USER WHERE user_phone = #{userPhone} AND password = password(#{password})
+    </select>
+</mapper>
