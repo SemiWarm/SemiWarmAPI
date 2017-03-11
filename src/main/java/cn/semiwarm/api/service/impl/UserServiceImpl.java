@@ -32,4 +32,8 @@ public class UserServiceImpl implements UserService {
     public User getUserByPhone(String phone) {
         return userMapper.findUserByPhone(phone);
     }
+
+    public User getUserByName(String name) {
+        return userMapper.findUserByName(name);
+    }
 }

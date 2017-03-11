@@ -14,4 +14,6 @@ public interface UserService extends BaseService<User> {
     List<User> getAllUsers();
     // 根据手机号获取用户信息
     User getUserByPhone(String phone);
+    // 根据用户名获取用户信息
+    User getUserByName(String name);
 }

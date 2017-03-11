@@ -48,10 +48,17 @@ public class UserController {
      * @param phone 手机号
      * @return 用户信息
      */
-    @RequestMapping(value = "/users/{phone}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "/users/phone/{phone}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "根据手机号获取用户信息")
     @ResponseBody
     User getUserByPhone(@PathVariable("phone") String phone) {
         return userService.getUserByPhone(phone);
+    }
+
+    @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
+    @ApiOperation(value = "根据用户名获取用户信息")
+    @ResponseBody
+    User getUserByName(@PathVariable("name") String name) {
+        return userService.getUserByName(name);
     }
 }
