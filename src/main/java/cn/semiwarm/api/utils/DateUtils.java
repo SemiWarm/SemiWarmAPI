@@ -9,9 +9,8 @@ import java.util.Date;
  * Created by alibct on 2017/3/11.
  */
 public class DateUtils {
-    public static String getCurrentDate(){
-        Date currentDate = new Date();
+    public static String getFromatDate(Date date){
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(currentDate);
+        return format.format(date);
     }
 }

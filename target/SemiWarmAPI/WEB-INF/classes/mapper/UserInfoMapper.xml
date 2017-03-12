@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace是指明Mybatis扫描的目录，mapper是我们的Dao层的映射目录 -->
+<mapper namespace="cn.semiwarm.api.mapper.UserInfoMapper">
+
+    <!--增加用户-->
+    <insert id="add" parameterType="cn.semiwarm.api.entity.UserInfo">
+        INSERT INTO USERINFO (user_id)
+        VALUES (#{userId})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="delete" parameterType="cn.semiwarm.api.entity.UserInfo">
+        DELETE FROM USERINFO
+        WHERE user_id = #{userId}
+    </delete>
+
+    <!--更新用户-->
+    <update id="update" parameterType="cn.semiwarm.api.entity.UserInfo">
+        UPDATE USERINFO
+        SET
+        pay_password  = password(#{payPassword}),
+        user_sex      = #{userSex},
+        user_birthday = #{userBirthday},
+        user_photo    = #{userPhoto},
+        user_level    = #{userLevel},
+        user_email    = #{userEmail}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--根据id查找用户-->
+    <select id="findById" parameterType="java.lang.Long" resultType="cn.semiwarm.api.entity.UserInfo">
+        SELECT *
+        FROM USERINFO
+        WHERE user_id = #{userId}
+    </select>
+
+    <!--查找所有用户-->
+    <select id="findAll" resultType="cn.semiwarm.api.entity.UserInfo">
+        SELECT *
+        FROM USERINFO
+    </select>
+
+</mapper>
