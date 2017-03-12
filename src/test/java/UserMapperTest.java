@@ -7,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
@@ -26,11 +25,10 @@ public class UserMapperTest {
     public void testAdd(){
         User user = new User();
         user.setUserId(UUID.randomUUID().toString());
-        user.setUserName("呆萌的小白兔");
-        user.setUserPhone("18451390226");
-        user.setPassword("000000");
+        user.setUserName("阿狸不吃糖");
+        user.setUserPhone("18362666128");
+        user.setPassword("941001");
         user.setStatus(true);
-        user.setCreateTime(new Timestamp(System.currentTimeMillis()));
         int result;
         result = userMapper.add(user);
         if (result > 0) {
@@ -44,4 +42,5 @@ public class UserMapperTest {
     public void testFindAll(){
         System.out.println(userMapper.findAll());
     }
+
 }

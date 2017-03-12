@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -35,5 +36,16 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByName(String name) {
         return userMapper.findUserByName(name);
+    }
+
+    /**
+     * 注册用户
+     * @param user 用户信息
+     * @return 受影响的行数
+     */
+    public int signUp(User user) {
+        user.setUserId(UUID.randomUUID().toString());
+        user.setStatus(true);
+        return userMapper.add(user);
     }
 }

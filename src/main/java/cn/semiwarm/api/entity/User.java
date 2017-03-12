@@ -1,9 +1,7 @@
 package cn.semiwarm.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * 描述：用户实体类
@@ -16,7 +14,7 @@ public class User implements Serializable {
     private String userPhone; // 用户手机号
     private String password; // 密码
     private Boolean status; // 账号是否可用->默认可用
-    private Timestamp createTime; // 用户创建时间
+    private Date createTime; // 用户创建时间
 
     public String getUserId() {
         return userId;
@@ -58,12 +56,11 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

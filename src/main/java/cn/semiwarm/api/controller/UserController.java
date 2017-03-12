@@ -5,10 +5,7 @@ import cn.semiwarm.api.service.impl.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class UserController {
     }
 
     /**
-     * 获取用户列表接口
+     * 获取用户列表
      * url:www.semiwarm.cn/api/v1.0/users
      *
      * @return 用户列表信息
@@ -43,7 +40,7 @@ public class UserController {
 
     /**
      * 根据手机号获取用户信息
-     * url:www.semiwarm.cn/api/v1.0/users/{phone}
+     * url:www.semiwarm.cn/api/v1.0/users/phone/{phone}
      *
      * @param phone 手机号
      * @return 用户信息
@@ -55,10 +52,31 @@ public class UserController {
         return userService.getUserByPhone(phone);
     }
 
+    /**
+     * 根据用户名获取用户信息
+     * url:www.semiwarm.cn/api/v1.0/users/name/{name}
+     *
+     * @param name 用户名
+     * @return 用户信息
+     */
     @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "根据用户名获取用户信息")
     @ResponseBody
     User getUserByName(@PathVariable("name") String name) {
         return userService.getUserByName(name);
+    }
+
+    /**
+     * 注册用户
+     * url:www.semiwarm.cn/api/v1.0/users
+     *
+     * @param user 用户信息
+     * @return 受影响的行数
+     */
+    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
+    @ApiOperation(value = "注册用户")
+    @ResponseBody
+    int signUp(@RequestBody User user) {
+        return userService.signUp(user);
     }
 }
