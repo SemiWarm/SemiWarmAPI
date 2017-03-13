@@ -48,15 +48,17 @@ public class UserServiceImpl implements UserService {
      * 向User表插入数据后必须还要向UserInfo表插入数据
      *
      * @param user 用户信息
-     * @return 受影响的行数
+     * @return 结果信息
      */
-    public int signUp(User user) {
+    public String signUp(User user) {
         Long userId = new Date().getTime();
         user.setUserId(userId);
         user.setStatus(true);
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(userId);
-        userInfoMapper.add(userInfo);
-        return userMapper.add(user);
+        if (userMapper.add(user) > 0 && userInfoMapper.add(userInfo) > 0){
+            return "注册成功！";
+        }
+        return "注册失败！";
     }
 }

@@ -76,7 +76,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "注册用户")
     @ResponseBody
-    int signUp(@RequestBody User user) {
+    String signUp(@RequestBody User user) {
         return userService.signUp(user);
     }
 }

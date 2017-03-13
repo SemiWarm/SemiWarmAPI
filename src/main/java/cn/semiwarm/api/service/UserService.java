@@ -17,5 +17,5 @@ public interface UserService extends BaseService<User> {
     // 根据用户名获取用户信息
     User getUserByName(String userName);
     // 注册用户
-    int signUp(User user);
+    String signUp(User user);
 }
