@@ -46,17 +46,24 @@ public class UserServiceImpl implements UserService {
     /**
      * 注册用户
      * 向User表插入数据后必须还要向UserInfo表插入数据
+     * user_id：当前时间的Long类型
+     * status：默认可用
+     * user_level：默认1级
      *
      * @param user 用户信息
      * @return 结果信息
      */
     public String signUp(User user) {
+        // 获取当前时间的Long类型
         Long userId = new Date().getTime();
         user.setUserId(userId);
+        // 默认可用
         user.setStatus(true);
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(userId);
-        if (userMapper.add(user) > 0 && userInfoMapper.add(userInfo) > 0){
+        // 等级默认1级
+        userInfo.setUserLevel(1);
+        if (userMapper.add(user) > 0 && userInfoMapper.add(userInfo) > 0) {
             return "注册成功！";
         }
         return "注册失败！";
