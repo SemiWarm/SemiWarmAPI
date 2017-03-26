@@ -32,9 +32,8 @@ public class UserController {
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "获取用户列表")
-    public
     @ResponseBody
-    List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -48,7 +47,7 @@ public class UserController {
     @RequestMapping(value = "/users/phone/{phone}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "根据手机号获取用户信息")
     @ResponseBody
-    User getUserByPhone(@PathVariable("phone") String phone) {
+    public User getUserByPhone(@PathVariable("phone") String phone) {
         return userService.getUserByPhone(phone);
     }
 
@@ -62,7 +61,7 @@ public class UserController {
     @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "根据用户名获取用户信息")
     @ResponseBody
-    User getUserByName(@PathVariable("name") String name) {
+    public User getUserByName(@PathVariable("name") String name) {
         return userService.getUserByName(name);
     }
 
@@ -76,7 +75,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "注册用户")
     @ResponseBody
-    String signUp(@RequestBody User user) {
+    public String signUp(@RequestBody User user) {
         return userService.signUp(user);
     }
 }

@@ -54,7 +54,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- 5.扫描controller包 -->
+    <!-- 5.上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 最大内存大小 -->
+        <property name="maxInMemorySize" value="10240"/>
+        <!-- 最大文件大小，-1为不限制大小 -->
+        <property name="maxUploadSize" value="-1"/>
+    </bean>
+
+    <!-- 6.扫描controller包 -->
     <context:component-scan base-package="cn.semiwarm.api.controller">
         <!-- 制定扫包规则 ,只扫描使用@Controller注解的JAVA类 -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
