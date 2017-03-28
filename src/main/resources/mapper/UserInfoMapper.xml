@@ -5,19 +5,19 @@
 
     <!--增加用户-->
     <insert id="add" parameterType="cn.semiwarm.api.entity.UserInfo">
-        INSERT INTO USERINFO (user_id)
+        INSERT INTO UserInfo (user_id)
         VALUES (#{userId})
     </insert>
 
     <!--删除用户-->
     <delete id="delete" parameterType="cn.semiwarm.api.entity.UserInfo">
-        DELETE FROM USERINFO
+        DELETE FROM UserInfo
         WHERE user_id = #{userId}
     </delete>
 
     <!--更新用户-->
     <update id="update" parameterType="cn.semiwarm.api.entity.UserInfo">
-        UPDATE USERINFO
+        UPDATE UserInfo
         SET
         pay_password  = password(#{payPassword}),
         user_sex      = #{userSex},
@@ -31,14 +31,14 @@
     <!--根据id查找用户-->
     <select id="findById" parameterType="java.lang.Long" resultType="cn.semiwarm.api.entity.UserInfo">
         SELECT *
-        FROM USERINFO
+        FROM UserInfo
         WHERE user_id = #{userId}
     </select>
 
     <!--查找所有用户-->
     <select id="findAll" resultType="cn.semiwarm.api.entity.UserInfo">
         SELECT *
-        FROM USERINFO
+        FROM UserInfo
     </select>
 
 </mapper>
