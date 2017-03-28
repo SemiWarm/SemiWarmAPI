@@ -5,19 +5,19 @@
 
     <!--增加用户-->
     <insert id="add" parameterType="cn.semiwarm.api.entity.User">
-        INSERT INTO USER (user_id, user_name, user_phone, password, status, create_at)
+        INSERT INTO User (user_id, user_name, user_phone, password, status, create_at)
         VALUES (#{userId}, #{userName}, #{userPhone}, password(#{password}), #{status}, #{createAt})
     </insert>
 
     <!--删除用户-->
     <delete id="delete" parameterType="cn.semiwarm.api.entity.User">
-        DELETE FROM USER
+        DELETE FROM User
         WHERE user_id = #{userId}
     </delete>
 
     <!--更新用户-->
     <update id="update" parameterType="cn.semiwarm.api.entity.User">
-        UPDATE USER
+        UPDATE User
         SET
             user_name  = #{userName},
             user_phone = #{userPhone},
@@ -29,40 +29,40 @@
     <!--根据id查找用户-->
     <select id="findById" parameterType="java.lang.Long" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
         WHERE user_id = #{userId}
     </select>
 
     <!--查找所有用户-->
     <select id="findAll" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
     </select>
 
     <!--根据手机号查询用户-->
     <select id="findUserByPhone" parameterType="String" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
         WHERE user_phone = #{userPhone}
     </select>
 
     <!--根据用户名称查询用户-->
     <select id="findUserByName" parameterType="String" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
         WHERE user_name = #{userName}
     </select>
 
     <!--根据用户名验证-->
     <select id="verifyUserByName" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
         WHERE user_name = #{userName} AND password = password(#{password})
     </select>
     <!--根据手机号验证-->
     <select id="verifyUserByPhone" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
         SELECT *
-        FROM USER
+        FROM User
         WHERE user_phone = #{userPhone} AND password = password(#{password})
     </select>
 </mapper>
