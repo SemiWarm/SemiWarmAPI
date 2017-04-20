@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace是指明Mybatis扫描的目录，即cn.semiwarm.admin.mapper.xxxMapper -->
+<mapper namespace="cn.semiwarm.api.mapper.CategoryMapper">
+
+    <insert id="add" parameterType="cn.semiwarm.api.entity.Category">
+        INSERT INTO Category (category_name, category_banner, category_title, category_desc)
+        VALUES (#{categoryName}, #{categoryBanner}, #{categoryTitle}, #{categoryDesc})
+    </insert>
+
+    <delete id="delete" parameterType="cn.semiwarm.api.entity.Category">
+        DELETE FROM Category
+        WHERE category_id = #{categoryId}
+    </delete>
+
+    <update id="update" parameterType="cn.semiwarm.api.entity.Category">
+        UPDATE Category
+        SET
+            category_name   = #{categoryName},
+            category_banner = #{categoryBanner},
+            category_title  = #{categoryTitle},
+            category_desc   = #{categoryDesc}
+        WHERE category_id = #{categoryId}
+    </update>
+
+    <select id="findById" parameterType="cn.semiwarm.api.entity.Category" resultType="cn.semiwarm.api.entity.Category">
+        SELECT *
+        FROM Category
+        WHERE category_id = #{categoryId}
+    </select>
+
+    <select id="findAll" resultType="cn.semiwarm.api.entity.Category">
+        SELECT *
+        FROM Category
+    </select>
+
+</mapper>
