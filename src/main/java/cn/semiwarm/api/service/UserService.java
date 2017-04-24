@@ -1,6 +1,7 @@
 package cn.semiwarm.api.service;
 
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.User;
 
 import java.util.List;
@@ -11,11 +12,11 @@ import java.util.List;
  */
 public interface UserService extends BaseService<User> {
     // 获取所有用户
-    List<User> getAllUsers();
-    // 根据手机号获取用户信息
-    User getUserByPhone(String userPhone);
+    BaseResponse<List<User>> getAllUsers();
+    // 根据账号获取用户信息
+    BaseResponse<User> getUserByAccount(String userAccount);
     // 根据用户名获取用户信息
-    User getUserByName(String userName);
+    BaseResponse<User> getUserByName(String userName);
     // 注册用户
-    String signUp(User user);
+    BaseResponse<User> signUp(User user);
 }

@@ -23,8 +23,8 @@ public interface UserMapper extends BaseMapper<User> {
     List<User> findAll();
 
 
-    // 根据用户手机号查询用户
-    User findUserByPhone(Serializable userPhone);
+    // 根据账号查询用户
+    User findUserByAccount(Serializable userAccount);
 
     // 根据用户名称查询用户
     User findUserByName(Serializable userName);
@@ -32,6 +32,6 @@ public interface UserMapper extends BaseMapper<User> {
     // 根据用户名验证
     User verifyUserByName(HashMap hashMap);
 
-    // 根据手机号验证
-    User verifyUserByPhone(HashMap hashMap);
+    // 根据账号验证
+    User verifyUserByAccount(HashMap hashMap);
 }

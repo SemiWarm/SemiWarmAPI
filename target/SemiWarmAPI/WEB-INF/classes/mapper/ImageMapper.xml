@@ -3,9 +3,9 @@
 <!-- namespace是指明Mybatis扫描的目录，即cn.semiwarm.admin.mapper.xxxMapper -->
 <mapper namespace="cn.semiwarm.api.mapper.ImageMapper">
     <insert id="add" parameterType="cn.semiwarm.api.entity.Image">
-        INSERT INTO Image (image_uuid, image_original_name, image_name, image_extension_name, image_real_path, image_access_path, image_size, image_type, uploaded_by, uploaded_at)
+        INSERT INTO Image (image_uuid, image_original_name, image_name, image_extension_name, image_real_path, image_access_path, image_size, image_type, uploaded_by, uploaded_at, status)
         VALUES (#{imageUuid}, #{imageOriginalName}, #{imageName}, #{imageExtensionName}, #{imageRealPath},
-                #{imageAccessPath}, #{imageSize}, #{imageType}, #{uploadedBy}, #{uploadedAt})
+                              #{imageAccessPath}, #{imageSize}, #{imageType}, #{uploadedBy}, #{uploadedAt}, #{status})
     </insert>
     <delete id="delete" parameterType="cn.semiwarm.api.entity.Image">
         DELETE FROM Image
@@ -22,22 +22,24 @@
             image_size           = #{imageSize},
             image_type           = #{imageType},
             uploaded_by          = #{uploadedBy},
-            uploaded_at          = #{uploadedAt}
+            uploaded_at          = #{uploadedAt},
+            status               = #{status}
         WHERE image_uuid = #{imageUuid}
     </update>
     <select id="findById" parameterType="cn.semiwarm.api.entity.Image" resultType="cn.semiwarm.api.entity.Image">
         SELECT *
         FROM Image
-        WHERE image_uuid = #{imageUuid}
+        WHERE status = TRUE AND image_uuid = #{imageUuid}
     </select>
     <select id="findAll" resultType="cn.semiwarm.api.entity.Image">
         SELECT *
         FROM Image
+        WHERE status = TRUE
     </select>
 
     <select id="findByImageType" parameterType="java.lang.String" resultType="cn.semiwarm.api.entity.Image">
         SELECT *
         FROM Image
-        WHERE image_type = #{imageType}
+        WHERE status = TRUE AND image_type = #{imageType}
     </select>
 </mapper>

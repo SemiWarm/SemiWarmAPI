@@ -1,5 +1,6 @@
 package cn.semiwarm.api.service.impl;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Image;
 import cn.semiwarm.api.mapper.ImageMapper;
 import cn.semiwarm.api.service.ImageService;
@@ -35,15 +36,48 @@ public class ImageServiceImpl implements ImageService {
         return imageMapper.update(image);
     }
 
-    public Image findImageById(Serializable id) throws Exception {
-        return imageMapper.findById(id);
+    public BaseResponse<Image> getImageById(Serializable id) throws Exception {
+        BaseResponse<Image> response = new BaseResponse<Image>();
+        Image image = imageMapper.findById(id);
+        if (null != image) {
+            response.setSuccess(1);
+            response.setMessage("图片信息");
+            response.setData(image);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 
-    public List<Image> findAllImage() throws Exception {
-        return imageMapper.findAll();
+    public BaseResponse<List<Image>> getAllImages() throws Exception {
+        BaseResponse<List<Image>> response = new BaseResponse<List<Image>>();
+        List<Image> images = imageMapper.findAll();
+        if (images.size() > 0) {
+            response.setSuccess(1);
+            response.setMessage("图片列表");
+            response.setData(images);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 
-    public List<Image> findImageByImageType(Serializable imageType) throws Exception {
-        return imageMapper.findByImageType(imageType);
+    public BaseResponse<List<Image>> getImagesByType(Serializable imageType) throws Exception {
+        BaseResponse<List<Image>> response = new BaseResponse<List<Image>>();
+        List<Image> images = imageMapper.findByImageType(imageType);
+        if (images.size() > 0) {
+            response.setSuccess(1);
+            response.setMessage("图片列表");
+            response.setData(images);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 }

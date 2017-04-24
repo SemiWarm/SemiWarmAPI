@@ -19,12 +19,13 @@
     <update id="update" parameterType="cn.semiwarm.api.entity.UserInfo">
         UPDATE UserInfo
         SET
-        pay_password  = password(#{payPassword}),
-        user_sex      = #{userSex},
-        user_birthday = #{userBirthday},
-        user_photo    = #{userPhoto},
-        user_level    = #{userLevel},
-        user_email    = #{userEmail}
+            pay_password  = password(#{payPassword}),
+            user_sex      = #{userSex},
+            user_birthday = #{userBirthday},
+            user_avatar   = #{userAvatar},
+            user_level    = #{userLevel},
+            user_email    = #{userEmail},
+            status        = #{status}
         WHERE user_id = #{userId}
     </update>
 
@@ -32,13 +33,14 @@
     <select id="findById" parameterType="java.lang.Long" resultType="cn.semiwarm.api.entity.UserInfo">
         SELECT *
         FROM UserInfo
-        WHERE user_id = #{userId}
+        WHERE status = TRUE AND user_id = #{userId}
     </select>
 
     <!--查找所有用户-->
     <select id="findAll" resultType="cn.semiwarm.api.entity.UserInfo">
         SELECT *
         FROM UserInfo
+        WHERE status = TRUE
     </select>
 
 </mapper>

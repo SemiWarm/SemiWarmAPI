@@ -1,6 +1,7 @@
 package cn.semiwarm.api.service;
 
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Category;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public interface CategoryService extends BaseService<Category> {
 
     int updateCategory(Category category) throws Exception;
 
-    Category findCategoryById(Serializable id) throws Exception;
+    BaseResponse<Category> getCategoryById(Serializable id) throws Exception;
 
-    List<Category> findAllCategory() throws Exception;
+    BaseResponse<List<Category>> getAllCategories() throws Exception;
 }

@@ -1,5 +1,6 @@
 package cn.semiwarm.api.controller;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Category;
 import cn.semiwarm.api.service.impl.CategoryServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -36,7 +37,7 @@ public class CategoryController {
     @RequestMapping(value = "/categories", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取类目列表")
     @ResponseBody
-    public List<Category> findAllCategory() throws Exception {
-        return categoryService.findAllCategory();
+    public BaseResponse<List<Category>> getAllCategories() throws Exception {
+        return categoryService.getAllCategories();
     }
 }

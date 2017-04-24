@@ -1,5 +1,6 @@
 package cn.semiwarm.api.service;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.SubCategory;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public interface SubCategoryService extends BaseService<SubCategory> {
 
     int updateSubCategory(SubCategory subCategory) throws Exception;
 
-    SubCategory findSubCategoryById(Serializable id) throws Exception;
+    BaseResponse<SubCategory> getSubCategoryById(Serializable id) throws Exception;
 
-    List<SubCategory> findAllSubCategory() throws Exception;
+    BaseResponse<List<SubCategory>> getAllSubCategories() throws Exception;
 }

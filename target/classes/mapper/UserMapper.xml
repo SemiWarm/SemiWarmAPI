@@ -5,8 +5,8 @@
 
     <!--增加用户-->
     <insert id="add" parameterType="cn.semiwarm.api.entity.User">
-        INSERT INTO User (user_id, user_name, user_phone, password, status, create_at)
-        VALUES (#{userId}, #{userName}, #{userPhone}, password(#{password}), #{status}, #{createAt})
+        INSERT INTO User (user_id, user_name, user_account, login_password, status, create_at)
+        VALUES (#{userId}, #{userName}, #{userAccount}, password(#{loginPassword}), #{status}, #{createAt})
     </insert>
 
     <!--删除用户-->
@@ -19,10 +19,10 @@
     <update id="update" parameterType="cn.semiwarm.api.entity.User">
         UPDATE User
         SET
-            user_name  = #{userName},
-            user_phone = #{userPhone},
-            password   = password(#{password}),
-            status     = #{status}
+            user_name      = #{userName},
+            user_account   = #{userAccount},
+            login_password = password(#{loginPassword}),
+            status         = #{status}
         WHERE user_id = #{userId}
     </update>
 
@@ -30,39 +30,40 @@
     <select id="findById" parameterType="java.lang.Long" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
-        WHERE user_id = #{userId}
+        WHERE status = TRUE AND user_id = #{userId}
     </select>
 
     <!--查找所有用户-->
     <select id="findAll" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
+        WHERE status = TRUE
     </select>
 
     <!--根据手机号查询用户-->
-    <select id="findUserByPhone" parameterType="String" resultType="cn.semiwarm.api.entity.User">
+    <select id="findUserByAccount" parameterType="String" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
-        WHERE user_phone = #{userPhone}
+        WHERE status = TRUE AND user_account = #{userAccount}
     </select>
 
     <!--根据用户名称查询用户-->
     <select id="findUserByName" parameterType="String" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
-        WHERE user_name = #{userName}
+        WHERE status = TRUE AND user_name = #{userName}
     </select>
 
     <!--根据用户名验证-->
     <select id="verifyUserByName" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
-        WHERE user_name = #{userName} AND password = password(#{password})
+        WHERE status = TRUE AND user_name = #{userName} AND login_password = password(#{loginPassword})
     </select>
     <!--根据手机号验证-->
-    <select id="verifyUserByPhone" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
+    <select id="verifyUserByAccount" parameterType="hashmap" resultType="cn.semiwarm.api.entity.User">
         SELECT *
         FROM User
-        WHERE user_phone = #{userPhone} AND password = password(#{password})
+        WHERE status = TRUE AND user_account = #{userAccount} AND login_password = password(#{loginPassword})
     </select>
 </mapper>

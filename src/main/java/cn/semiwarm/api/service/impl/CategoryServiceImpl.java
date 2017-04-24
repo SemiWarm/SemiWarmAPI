@@ -1,5 +1,6 @@
 package cn.semiwarm.api.service.impl;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Category;
 import cn.semiwarm.api.mapper.CategoryMapper;
 import cn.semiwarm.api.service.CategoryService;
@@ -35,11 +36,33 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.update(category);
     }
 
-    public Category findCategoryById(Serializable id) throws Exception {
-        return categoryMapper.findById(id);
+    public BaseResponse<Category> getCategoryById(Serializable id) throws Exception {
+        BaseResponse<Category> response = new BaseResponse<Category>();
+        Category category = categoryMapper.findById(id);
+        if (null != category) {
+            response.setSuccess(1);
+            response.setMessage("类目信息");
+            response.setData(category);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 
-    public List<Category> findAllCategory() throws Exception {
-        return categoryMapper.findAll();
+    public BaseResponse<List<Category>> getAllCategories() throws Exception {
+        BaseResponse<List<Category>> response = new BaseResponse<List<Category>>();
+        List<Category> categories = categoryMapper.findAll();
+        if (categories.size() > 0) {
+            response.setSuccess(1);
+            response.setMessage("类目列表");
+            response.setData(categories);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 }

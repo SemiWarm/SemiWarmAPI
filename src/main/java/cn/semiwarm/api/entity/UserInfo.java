@@ -12,9 +12,10 @@ public class UserInfo implements Serializable{
     private String payPassword;
     private String userSex;
     private Date userBirthday;
-    private String userPhoto;
+    private String userAvatar;
     private Integer userLevel;
     private String userEmail;
+    private Boolean status;
 
     public Long getUserId() {
         return userId;
@@ -48,12 +49,12 @@ public class UserInfo implements Serializable{
         this.userBirthday = userBirthday;
     }
 
-    public String getUserPhoto() {
-        return userPhoto;
+    public String getUserAvatar() {
+        return userAvatar;
     }
 
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
     public Integer getUserLevel() {
@@ -72,6 +73,14 @@ public class UserInfo implements Serializable{
         this.userEmail = userEmail;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -79,9 +88,10 @@ public class UserInfo implements Serializable{
                 ", payPassword='" + payPassword + '\'' +
                 ", userSex='" + userSex + '\'' +
                 ", userBirthday=" + userBirthday +
-                ", userPhoto='" + userPhoto + '\'' +
+                ", userAvatar='" + userAvatar + '\'' +
                 ", userLevel=" + userLevel +
                 ", userEmail='" + userEmail + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

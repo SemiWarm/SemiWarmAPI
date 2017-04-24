@@ -1,5 +1,6 @@
 package cn.semiwarm.api.controller;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Image;
 import cn.semiwarm.api.service.impl.ImageServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +38,7 @@ public class ImageController {
     @RequestMapping(value = "/{imageType}/images", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ApiOperation(value = "根据图片类型获取图片列表")
     @ResponseBody
-    public List<Image> findImagesByType(@PathVariable("imageType") String imageType) throws Exception {
-        return imageService.findImageByImageType(imageType);
+    public BaseResponse<List<Image>> getImagesByType(@PathVariable("imageType") String imageType) throws Exception {
+        return imageService.getImagesByType(imageType);
     }
 }

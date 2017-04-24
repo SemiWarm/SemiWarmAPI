@@ -1,5 +1,6 @@
 package cn.semiwarm.api.controller;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.User;
 import cn.semiwarm.api.service.impl.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -33,22 +34,22 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "获取用户列表")
     @ResponseBody
-    public List<User> getAllUsers() {
+    public BaseResponse<List<User>> getAllUsers() {
         return userService.getAllUsers();
     }
 
     /**
-     * 根据手机号获取用户信息
-     * url:www.semiwarm.cn/api/v1.0/users/phone/{phone}
+     * 根据账号获取用户信息
+     * url:www.semiwarm.cn/api/v1.0/users/account/{account}
      *
-     * @param phone 手机号
+     * @param account 账号
      * @return 用户信息
      */
-    @RequestMapping(value = "/users/phone/{phone}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
-    @ApiOperation(value = "根据手机号获取用户信息")
+    @RequestMapping(value = "/users/account/{account}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
+    @ApiOperation(value = "根据账号获取用户信息")
     @ResponseBody
-    public User getUserByPhone(@PathVariable("phone") String phone) {
-        return userService.getUserByPhone(phone);
+    public BaseResponse<User> getUserByAccount(@PathVariable("account") String account) {
+        return userService.getUserByAccount(account);
     }
 
     /**
@@ -61,7 +62,7 @@ public class UserController {
     @RequestMapping(value = "/users/name/{name}", method = RequestMethod.GET, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "根据用户名获取用户信息")
     @ResponseBody
-    public User getUserByName(@PathVariable("name") String name) {
+    public BaseResponse<User> getUserByName(@PathVariable("name") String name) {
         return userService.getUserByName(name);
     }
 
@@ -75,7 +76,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json;charset=utf-8"})
     @ApiOperation(value = "注册用户")
     @ResponseBody
-    public String signUp(@RequestBody User user) {
+    public BaseResponse<User> signUp(@RequestBody User user) {
         return userService.signUp(user);
     }
 }

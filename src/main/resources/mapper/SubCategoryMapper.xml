@@ -4,9 +4,9 @@
 <mapper namespace="cn.semiwarm.api.mapper.SubCategoryMapper">
 
     <insert id="add" parameterType="cn.semiwarm.api.entity.SubCategory">
-        INSERT INTO SubCategory (sub_category_name, sub_category_banner, sub_category_title, sub_category_desc, sub_category_icon, sub_category_tag, category_id)
+        INSERT INTO SubCategory (sub_category_name, sub_category_banner, sub_category_title, sub_category_desc, sub_category_icon, sub_category_tag, category_id, status)
         VALUES (#{subCategoryName}, #{subCategoryBanner}, #{subCategoryTitle}, #{subCategoryDesc}, #{subCategoryIcon},
-                #{subCategoryTag}, #{categoryId})
+                #{subCategoryTag}, #{categoryId}, #{status})
     </insert>
 
     <delete id="delete" parameterType="cn.semiwarm.api.entity.SubCategory">
@@ -23,19 +23,22 @@
             sub_category_desc   = #{subCategoryDesc},
             sub_category_icon   = #{subCategoryIcon},
             sub_category_tag    = #{subCategoryTag},
-            category_id         = #{categoryId}
+            category_id         = #{categoryId},
+            status              = #{status}
         WHERE sub_category_id = #{subCategoryId}
     </update>
 
-    <select id="findById" parameterType="cn.semiwarm.api.entity.SubCategory" resultType="cn.semiwarm.api.entity.SubCategory">
+    <select id="findById" parameterType="cn.semiwarm.api.entity.SubCategory"
+            resultType="cn.semiwarm.api.entity.SubCategory">
         SELECT *
         FROM SubCategory
-        WHERE sub_category_id = #{subCategoryId}
+        WHERE status = TRUE AND sub_category_id = #{subCategoryId}
     </select>
 
     <select id="findAll" resultType="cn.semiwarm.api.entity.SubCategory">
         SELECT *
         FROM SubCategory
+        WHERE status = TRUE
     </select>
 
 </mapper>

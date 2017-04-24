@@ -1,5 +1,6 @@
 package cn.semiwarm.api.service.impl;
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.SubCategory;
 import cn.semiwarm.api.mapper.SubCategoryMapper;
 import cn.semiwarm.api.service.SubCategoryService;
@@ -35,11 +36,33 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         return subCategoryMapper.update(subCategory);
     }
 
-    public SubCategory findSubCategoryById(Serializable id) throws Exception {
-        return subCategoryMapper.findById(id);
+    public BaseResponse<SubCategory> getSubCategoryById(Serializable id) throws Exception {
+        BaseResponse<SubCategory> response = new BaseResponse<SubCategory>();
+        SubCategory subCategory = subCategoryMapper.findById(id);
+        if (null != subCategory) {
+            response.setSuccess(1);
+            response.setMessage("子类目信息");
+            response.setData(subCategory);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 
-    public List<SubCategory> findAllSubCategory() throws Exception {
-        return subCategoryMapper.findAll();
+    public BaseResponse<List<SubCategory>> getAllSubCategories() throws Exception {
+        BaseResponse<List<SubCategory>> response = new BaseResponse<List<SubCategory>>();
+        List<SubCategory> subCategories = subCategoryMapper.findAll();
+        if (subCategories.size() > 0) {
+            response.setSuccess(1);
+            response.setMessage("子类目列表");
+            response.setData(subCategories);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
     }
 }

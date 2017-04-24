@@ -1,6 +1,7 @@
 package cn.semiwarm.api.service;
 
 
+import cn.semiwarm.api.entity.BaseResponse;
 import cn.semiwarm.api.entity.Image;
 
 import java.io.Serializable;
@@ -18,9 +19,9 @@ public interface ImageService extends BaseService<Image> {
 
     int updateImage(Image image) throws Exception;
 
-    Image findImageById(Serializable id) throws Exception;
+    BaseResponse<Image> getImageById(Serializable id) throws Exception;
 
-    List<Image> findAllImage() throws Exception;
+    BaseResponse<List<Image>> getAllImages() throws Exception;
 
-    List<Image> findImageByImageType(Serializable imageType) throws Exception;
+    BaseResponse<List<Image>> getImagesByType(Serializable imageType) throws Exception;
 }
