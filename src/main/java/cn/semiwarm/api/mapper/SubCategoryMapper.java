@@ -21,4 +21,6 @@ public interface SubCategoryMapper extends BaseMapper<SubCategory> {
     SubCategory findById(Serializable id);
 
     List<SubCategory> findAll();
+
+    List<SubCategory> findByCategoryId(Integer categoryId);
 }

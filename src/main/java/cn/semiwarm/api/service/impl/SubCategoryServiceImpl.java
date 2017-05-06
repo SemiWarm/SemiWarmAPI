@@ -65,4 +65,19 @@ public class SubCategoryServiceImpl implements SubCategoryService {
         }
         return response;
     }
+
+    public BaseResponse<List<SubCategory>> getSubCategoriesByCategoryId(Integer categoryId) throws Exception {
+        BaseResponse<List<SubCategory>> response = new BaseResponse<List<SubCategory>>();
+        List<SubCategory> subCategories = subCategoryMapper.findByCategoryId(categoryId);
+        if (subCategories.size() > 0) {
+            response.setSuccess(1);
+            response.setMessage("子类目列表");
+            response.setData(subCategories);
+        } else {
+            response.setSuccess(0);
+            response.setMessage("没有数据");
+            response.setData(null);
+        }
+        return response;
+    }
 }

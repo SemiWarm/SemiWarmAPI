@@ -20,4 +20,6 @@ public interface SubCategoryService extends BaseService<SubCategory> {
     BaseResponse<SubCategory> getSubCategoryById(Serializable id) throws Exception;
 
     BaseResponse<List<SubCategory>> getAllSubCategories() throws Exception;
+
+    BaseResponse<List<SubCategory>> getSubCategoriesByCategoryId(Integer categoryId) throws Exception;
 }
