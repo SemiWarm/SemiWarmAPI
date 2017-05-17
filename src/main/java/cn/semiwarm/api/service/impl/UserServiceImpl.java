@@ -77,6 +77,21 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    public BaseResponse<User> updateUser(User user) {
+        BaseResponse<User> response = new BaseResponse<User>();
+        int result = userMapper.update(user);
+        if (result > 0) {
+            response.setSuccess(1);
+            response.setMessage("更新成功");
+            response.setData(userMapper.findById(user.getUserId()));
+        } else {
+            response.setSuccess(0);
+            response.setMessage("更新失败");
+            response.setData(null);
+        }
+        return response;
+    }
+
 
     /**
      * 注册用户
